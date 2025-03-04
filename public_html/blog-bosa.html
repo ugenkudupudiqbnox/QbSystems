@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Qbnox Systems | Understanding BOSA (Bidirectional Optical Sub-Assembly) in GPON/XGS-PON Networks</title>
+  <meta name="description" content="In the world of fiber-optic communications, the Bidirectional Optical Sub-Assembly (BOSA) plays a crucial role in enabling high-speed data transmission. As the demand for Gigabit Passive Optical Networks (GPON) and XGS-PON continues to grow for FTTH (Fiber-to-the-Home) services, understanding how BOSA works and its significance in optical networking is essential.">
+  <meta name="keywords" content="wifi,routers,wifi 6,networking">
+  <meta property="og:title" content="Qbnox Systems | Understanding BOSA (Bidirectional Optical Sub-Assembly) in GPON/XGS-PON Networks" />
+  <meta property="og:url" content="https://www.qbnoxsystems.com/"/>
+  <meta property="og:description" content="In the world of fiber-optic communications, the Bidirectional Optical Sub-Assembly (BOSA) plays a crucial role in enabling high-speed data transmission. As the demand for Gigabit Passive Optical Networks (GPON) and XGS-PON continues to grow for FTTH (Fiber-to-the-Home) services, understanding how BOSA works and its significance in optical networking is essential."/>
+  <meta property="og:image" content="https://www.qbnoxsystems.com/assets/img/blog/blog-bosa.webp"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Qbnox Systems | Understanding BOSA (Bidirectional Optical Sub-Assembly) in GPON/XGS-PON Networks"/>
+  <meta property="og:locale" content="en_US"/>    
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@QbnoxSystems">
+  <meta name="twitter:title" content="Qbnox Systems | Understanding BOSA (Bidirectional Optical Sub-Assembly) in GPON/XGS-PON Networks">
+  <meta name="twitter:description" content="In the world of fiber-optic communications, the Bidirectional Optical Sub-Assembly (BOSA) plays a crucial role in enabling high-speed data transmission. As the demand for Gigabit Passive Optical Networks (GPON) and XGS-PON continues to grow for FTTH (Fiber-to-the-Home) services, understanding how BOSA works and its significance in optical networking is essential.">
+  <meta name="twitter:image" content="https://www.qbnoxsystems.com/assets/img/blog/blog-bosa.webp">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.ico" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Nov 01 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="blog-details-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="assets/img/logo.png" alt="">
+        <!-- <h1 class="sitename">FlexStart</h1>-->
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero" class="active">Home<br></a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#features">Product</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted flex-md-shrink-0" href="index.html#about">Get Started</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title">
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li class="current">Understanding BOSA (Bidirectional Optical Sub-Assembly) in GPON/XGS-PON Networks</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-8">
+
+          <!-- Blog Details Section -->
+          <section id="blog-details" class="blog-details section">
+            <div class="container">
+
+              <article class="article">
+
+                <div class="post-img">
+                  <img src="assets/img/blog/blog-bosa.webp" alt="" class="img-fluid">
+                </div>
+
+                <h2 class="title">Understanding BOSA (Bidirectional Optical Sub-Assembly) in GPON/XGS-PON Networks</h2>
+
+                <div class="meta-top">
+                  <ul>
+                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">Ugendreshwar Kudupudi</a></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2025-01-01">Jan 1, 2025</time></a></li>
+                  </ul>
+                </div><!-- End meta top -->
+
+                <div class="content">
+                    <h2 class="mt-4">Introduction</h2>
+
+                    <p>In the world of fiber-optic communications, the <strong>Bidirectional Optical Sub-Assembly (BOSA)</strong> plays a crucial role in enabling high-speed data transmission. As the demand for <strong>Gigabit Passive Optical Networks (GPON) and XGS-PON</strong> continues to grow for <strong>FTTH (Fiber-to-the-Home)</strong> services, understanding how BOSA works and its significance in optical networking is essential.</p>
+
+                    <p>This article provides a comprehensive overview of <strong>BOSA technology</strong>, including its <strong>components, working principles, calibration, and applications</strong> in modern optical networks.</p>
+
+                    <hr>
+
+                    <h2 class="mt-4">What is BOSA?</h2>
+
+                    <p>A <strong>BOSA (Bidirectional Optical Sub-Assembly)</strong> is an optical transceiver component that integrates both <strong>transmitter (TX) and receiver (RX)</strong> elements into a single module. This enables bidirectional data transmission over a single fiber, which is critical for <strong>GPON and XGS-PON</strong> networks used by Internet Service Providers (ISPs) worldwide.</p>
+
+                    <h3 class="mt-4">Key Components of BOSA</h3>
+
+                    <p>A BOSA module consists of the following essential components:</p>
+
+                    <table class="table table-bordered">
+                        <thead class="thead-light"></thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Function</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Laser Diode (LD)</td>
+                                <td>Transmits optical signals for upstream communication (1310 nm in GPON, 1270 nm in XGS-PON).</td>
+                            </tr>
+                            <tr>
+                                <td>Photodiode (PD)</td>
+                                <td>Receives optical signals for downstream communication (1490 nm in GPON, 1577 nm in XGS-PON).</td>
+                            </tr>
+                            <tr>
+                                <td>Wavelength Division Multiplexer (WDM) Filter</td>
+                                <td>Separates and combines different wavelengths for bidirectional communication.</td>
+                            </tr>
+                            <tr>
+                                <td>Transimpedance Amplifier (TIA)</td>
+                                <td>Converts weak optical signals from the photodiode into electrical signals.</td>
+                            </tr>
+                            <tr>
+                                <td>Thermoelectric Cooler (TEC, optional)</td>
+                                <td>Maintains stable laser diode temperature to ensure wavelength consistency.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="mt-4">How BOSA Works in GPON/XGS-PON Networks</h3>
+
+                    <ol>
+                        <li><strong>Downstream Transmission (OLT to ONT)</strong>
+                            <ul>
+                                <li>The Optical Line Terminal (<strong>OLT</strong>) transmits data at <strong>1490 nm (GPON) or 1577 nm (XGS-PON)</strong>.</li>
+                                <li>The <strong>Photodiode (PD)</strong> in the ONT's BOSA module detects the signal and converts it into an electrical signal.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Upstream Transmission (ONT to OLT)</strong>
+                            <ul>
+                                <li>The Optical Network Terminal (<strong>ONT</strong>) transmits data at <strong>1310 nm (GPON) or 1270 nm (XGS-PON)</strong> using the <strong>Laser Diode (LD)</strong>.</li>
+                                <li>The OLT's <strong>Photodiode (PD)</strong> receives the upstream signal and processes it for data transmission.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Wavelength Division Multiplexing (WDM)</strong> ensures that both TX and RX signals travel over the same fiber without interference.</li>
+                    </ol>
+
+                    <hr>
+
+                    <h2 class="mt-4">Why BOSA is Essential for GPON & XGS-PON</h2>
+
+                    <p>BOSA is a <strong>cost-effective and efficient solution</strong> for fiber-optic networks because it enables bidirectional transmission using a single optical fiber. This eliminates the need for additional fiber infrastructure, reducing deployment costs while maintaining high-speed data transmission.</p>
+
+                    <h3 class="mt-4">Key Benefits of BOSA in GPON/XGS-PON</h3>
+                    <ul>
+                        <li><strong>Compact Design</strong>: Integrates TX and RX into a single module, reducing space requirements.</li>
+                        <li><strong>High Efficiency</strong>: Enables data transmission over long distances without signal degradation.</li>
+                        <li><strong>Cost-Effective</strong>: Reduces the need for additional optical components, lowering infrastructure costs.</li>
+                        <li><strong>Optimized for Fiber Networks</strong>: Designed to work within <strong>ITU-T GPON/XGS-PON</strong> specifications.</li>
+                        <li><strong>Scalability</strong>: Supports future upgrades to higher-speed PON technologies.</li>
+                    </ul>
+
+                    <hr>
+
+                    <h2 class="mt-4">BOSA Calibration Process</h2>
+
+                    <p>To ensure optimal performance, BOSA modules must undergo <strong>calibration and testing</strong>. The calibration process involves adjusting the <strong>optical power, wavelength stability, extinction ratio, and receiver sensitivity</strong>.</p>
+
+                    <h3 class="mt-4">Test Equipment Required</h3>
+
+                    <p>To calibrate a BOSA module, the following equipment is used:</p>
+
+                    <table class="table table-bordered">
+                        <thead class="thead-light"></thead>
+                            <tr>
+                                <th>Equipment</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Optical Power Meter (OPM)</td>
+                                <td>Measures TX optical power.</td>
+                            </tr>
+                            <tr>
+                                <td>Optical Spectrum Analyzer (OSA)</td>
+                                <td>Measures laser wavelength and spectral width.</td>
+                            </tr>
+                            <tr>
+                                <td>Bit Error Rate Tester (BERT)</td>
+                                <td>Tests receiver sensitivity and data integrity.</td>
+                            </tr>
+                            <tr>
+                                <td>Tunable Laser Source (TLS)</td>
+                                <td>Simulates downstream signals for testing RX performance.</td>
+                            </tr>
+                            <tr>
+                                <td>Optical Attenuator</td>
+                                <td>Simulates fiber loss conditions.</td>
+                            </tr>
+                            <tr>
+                                <td>Eye Diagram Analyzer</td>
+                                <td>Measures signal quality and jitter.</td>
+                            </tr>
+                            <tr>
+                                <td>Temperature Chamber</td>
+                                <td>Tests performance across temperature variations.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="mt-4">Calibration Steps</h3>
+
+                    <h4>1. Optical Power Calibration (TX Side - Laser Diode)</h4>
+                    <ul>
+                        <li>Adjust the laser drive current to achieve the required <strong>TX optical power</strong> (e.g., 2.5G/10G for GPON/XGS-PON).</li>
+                        <li>Measure and fine-tune the <strong>Automatic Power Control (APC) loop</strong>.</li>
+                        <li>Ensure stability across <strong>-40°C to +85°C</strong> temperature range.</li>
+                    </ul>
+
+                    <h4>2. Wavelength Alignment (TX Side)</h4>
+                    <ul>
+                        <li>Measure the laser wavelength using an <strong>Optical Spectrum Analyzer (OSA)</strong>.</li>
+                        <li>Adjust the <strong>TEC (Thermoelectric Cooler) settings</strong> to fine-tune the wavelength within ITU-T specifications.</li>
+                    </ul>
+
+                    <h4>3. Extinction Ratio & Eye Diagram Testing</h4>
+                    <ul>
+                        <li>Verify the <strong>extinction ratio (ER)</strong> using an <strong>Eye Diagram Analyzer</strong>.</li>
+                        <li>Ensure the signal maintains a <strong>clean eye pattern</strong> with minimal jitter.</li>
+                    </ul>
+
+                    <h4>4. Receiver Sensitivity Calibration (RX Side - Photodiode)</h4>
+                    <ul>
+                        <li>Inject an optical signal using a <strong>Tunable Laser Source (TLS)</strong>.</li>
+                        <li>Measure the <strong>photodiode response</strong> and adjust the <strong>TIA gain</strong> to optimize receiver performance.</li>
+                        <li>Conduct <strong>Bit Error Rate (BER) tests</strong> to ensure compliance with ITU-T GPON standards.</li>
+                    </ul>
+
+                    <h4>5. Optical Return Loss (ORL) & Compliance Testing</h4>
+                    <ul>
+                        <li>Use an <strong>Optical Time-Domain Reflectometer (OTDR)</strong> to measure fiber reflections.</li>
+                        <li>Ensure <strong>ORL > 32 dB</strong> to minimize signal degradation.</li>
+                    </ul>
+
+                    <hr>
+
+                    <h2 class="mt-4">Applications of BOSA in Optical Networks</h2>
+
+                    <p>BOSA technology is widely used in:</p>
+                    <ul>
+                        <li><strong>GPON & XGS-PON Networks</strong> (OLT & ONT devices).</li>
+                        <li><strong>FTTH (Fiber-to-the-Home) broadband services</strong>.</li>
+                        <li><strong>10G/25G/50G PON</strong> for next-gen high-speed networks.</li>
+                        <li><strong>Industrial fiber-optic communication</strong>.</li>
+                        <li><strong>Optical transceiver modules</strong> in telecom and data centers.</li>
+                    </ul>
+
+                    <hr>
+
+                    <h2 class="mt-4">BOSA vs. TOSA/ROSA: What’s the Difference?</h2>
+
+                    <table class="table table-bordered">
+                        <thead class="thead-light"></thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Function</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BOSA (Bidirectional Optical Sub-Assembly)</td>
+                                <td>Integrates both TX (Laser) and RX (Photodiode) for bidirectional transmission.</td>
+                            </tr>
+                            <tr>
+                                <td>TOSA (Transmitter Optical Sub-Assembly)</td>
+                                <td>Contains only the <strong>Laser Diode (LD)</strong> for transmission.</td>
+                            </tr>
+                            <tr>
+                                <td>ROSA (Receiver Optical Sub-Assembly)</td>
+                                <td>Contains only the <strong>Photodiode (PD) + TIA</strong> for receiving signals.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>Unlike TOSA and ROSA, which are separate components, <strong>BOSA enables a compact and efficient design</strong> for GPON/XGS-PON applications.</p>
+
+                    <hr>
+
+                    <h2 class="mt-4">Conclusion</h2>
+
+                    <p>BOSA technology is a <strong>critical enabler of modern fiber-optic communication networks</strong>, offering <strong>high efficiency, cost-effectiveness, and seamless bidirectional transmission</strong>. As demand for <strong>high-speed broadband and next-gen PON networks</strong> grows, the role of BOSA in <strong>GPON and XGS-PON infrastructures</strong> will continue to expand.</p>
+
+                    <p>Understanding <strong>BOSA components, working principles, and calibration methods</strong> ensures <strong>optimal network performance and reliability</strong>, making it an essential technology for the future of optical networking.</p>
+
+                    <p>Would you like to learn more about <strong>BOSA integration in next-gen optical networks</strong>? Let us know in the comments!</p>
+                    
+                    
+
+                </div><!-- End post content -->
+
+                <div class="meta-bottom">
+                  <i class="bi bi-folder"></i>
+                  <ul class="cats">
+                    <li><a href="#">Wi-Fi 6</a></li>
+                  </ul>
+
+                  <i class="bi bi-tags"></i>
+                  <ul class="tags">
+                    <li><a href="#">BOSA</a></li>
+                    <li><a href="#">GPON</a></li>
+                    <li><a href="#">Optical</a></li>
+                  </ul>
+                </div><!-- End meta bottom -->
+
+              </article>
+
+            </div>
+          </section><!-- /Blog Details Section -->
+
+          <!-- Blog Author Section -->
+          <section id="blog-author" class="blog-author section">
+
+            <div class="container">
+              <div class="author-container d-flex align-items-center">
+                <img src="assets/img/team/ugen.jpeg" class="rounded-circle flex-shrink-0" alt="">
+                <div>
+                  <h4>Ugendreshwar Kudupudi</h4>
+                  <div class="social-links">
+                    <a href="https://x.com/ugen_next"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.facebook.com/ugendreshwar.kudupudi"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/ugendreshwar/"><i class="biu bi-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/ugendreshwar-kudupudi-9b351517/"><i class="biu bi-linkedin"></i></a>
+                  </div>
+                  <p>
+                    First-generation entrepreneur with over 20 years of experience in the Semiconductor and AI sector. Extensive experience in engineering, sales, marketing, and customer success, providing a comprehensive perspective on customer behavior and cross-border team management.                  </p>
+                </div>
+              </div>
+            </div>
+
+          </section><!-- /Blog Author Section -->
+
+        </div>
+
+        <div class="col-lg-4 sidebar">
+
+          <div class="widgets-container">
+
+            <!-- Recent Posts Widget -->
+            <div class="recent-posts-widget widget-item">
+
+              <h3 class="widget-title">Recent Posts</h3>
+
+              <div class="post-item">
+                <img src="assets/img/blog/blog-bosa.webp" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="blog-bosa.html">Understanding BOSA</a></h4>
+                  <time datetime="2025-01-01">Jan 1, 2025</time>
+                </div>
+              </div><!-- End recent post item-->
+
+              <div class="post-item">
+                <img src="assets/img/blog/blog-wifi6.webp" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="blog-details.html">Wi-Fi 6: The Future of Wireless Connectivity</a></h4>
+                  <time datetime="2024-12-01">Dec 1, 2024</time>
+                </div>
+              </div><!-- End recent post item-->
+
+            </div><!--/Recent Posts Widget -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+            <form action="forms/newsletter.php" method="post" class="php-email-form">
+              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="d-flex align-items-center">
+            <span class="sitename">Qbnox Systems</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Regus Co-Working Spaces, The District</p>
+            <p>Financial District, Hyderabad 500032, India</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 900 8511 933</span></p>
+            <p><strong>Email:</strong> <span>ugen@qbnox.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Wi-Fi 6</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">GPON</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Products</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Networking</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <h4>Follow Us</h4>
+          <p>Qbnox Systems, Building network excellence for an AI world</p>
+          <div class="social-links d-flex">
+            <a href="https://www.linkedin.com/company/qbnoxsystems"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.linkedin.com/company/qbnoxsystems"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.linkedin.com/company/qbnoxsystems"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/qbnoxsystems"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Qbnox Systems Private Limited</strong> <span>All Rights Reserved</span></p>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
