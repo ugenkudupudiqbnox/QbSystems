@@ -7,7 +7,7 @@
   */
 
   // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+  $receiving_email_address = $_SERVER['SMTP_RECV_EMAIL'];
 
   if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
     include( $php_email_form );
@@ -19,21 +19,21 @@
   $contact->ajax = true;
   
   $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['email'];
-  $contact->from_email = $_POST['email'];
+  $contact->from_name = $_SERVER['SMTP_SEND_NAME'];
+  $contact->from_email = $_SERVER['SMTP_SEND_EMAIL'];
   $contact->subject ="New Subscription: " . $_POST['email'];
 
   // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
   $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
+    'host' => $_SERVER['SMTP_HOST'],
+    'username' => $_SERVER['SMTP_USER'],
+    'password' => $_SERVER['SMTP_PASSWORD'],
+    'port' => $_SERVER['SMTP_PORT'],
+    'mailer' => $_SERVER['SMTP_SEND_EMAIL']
   );
-  */
-
+  
   $contact->add_message( $_POST['email'], 'Email');
+  $contact->recaptcha_secret_key = $_SERVER['GOOGLE_KEY'];
 
   echo $contact->send();
 ?>

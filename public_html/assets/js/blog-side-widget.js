@@ -20,9 +20,22 @@
  * @function
  */
 document.addEventListener("DOMContentLoaded", function () {
+    // Detect project root relative to current file
+    let basePath = './';
+    const path = window.location.pathname;
+    
+    // Check for "wifi/blogs" (nested 2 levels)
+    if (path.includes('/wifi/blogs/')) {
+        basePath = '../../';
+    } 
+    // Check for 1 level subdirectories
+    else if (path.includes('/ai/') || path.includes('/wifi/') || path.includes('/services/') || path.includes('/templates/')) {
+        basePath = '../';
+    }
+
     const recentPosts = [
         {
-            imgSrc: "assets/img/blog/blog-bosa.webp",
+            imgSrc: basePath + "assets/img/blog/blog-bosa.webp",
             imgAlt: "",
             linkHref: "blog-bosa.html",
             linkText: "Understanding BOSA",
@@ -30,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             timeText: "Jan 1, 2025"
         },
         {
-            imgSrc: "assets/img/blog/blog-wifi6.webp",
+            imgSrc: basePath + "assets/img/blog/blog-wifi6.webp",
             imgAlt: "",
             linkHref: "blog-wifi6.html",
             linkText: "Wi-Fi 6: The Future of Wireless Connectivity",
@@ -38,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
             timeText: "Dec 1, 2024"
         },
         {
-            imgSrc: "assets/img/blog/blog-wifi7.webp",
+            imgSrc: basePath + "assets/img/blog/blog-wifi7.webp",
             imgAlt: "",
             linkHref: "blog-wifi7.html",
             linkText: "Wi-Fi 7: The Next Leap in Wireless Technology",
@@ -48,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const widgetContainer = document.getElementById('recent-posts-widget');
+    if (!widgetContainer) return;
+
     const widgetTitle = document.createElement('h3');
     widgetTitle.className = 'widget-title';
     widgetTitle.textContent = 'Recent Posts';
