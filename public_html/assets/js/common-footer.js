@@ -69,7 +69,7 @@
 
         <div class="col-lg-4 col-md-12">
           <h4>Follow Us</h4>
-          <p>Qbnox Systems, Building network excellence for an AI world</p>
+          <p>Qbnox Systems, Building excellence for an AI world</p>
           <div class="social-links d-flex">
             <a href="https://www.linkedin.com/company/qbnoxsystems"><i class="bi bi-twitter-x"></i></a>
             <a href="https://www.linkedin.com/company/qbnoxsystems"><i class="bi bi-facebook"></i></a>
