@@ -107,12 +107,16 @@ jobs:
           set -euo pipefail
           PORT="${SSH_PORT:-22}"
 
+          # Extract VERSION_ID from DEPLOY_PATH (e.g., /var/www/qbsystemsv102/public_html -> 102)
+          VERSION_ID=$(echo "${DEPLOY_PATH}" | grep -oP 'qbsystemsv\K\d+')
+
           ssh -p "$PORT" "${SSH_USER}@${SSH_HOST}" "
             set -e
             test -d '${DEPLOY_PATH}'
             sudo find '${DEPLOY_PATH}' -type d -exec chmod 755 {} +
             sudo find '${DEPLOY_PATH}' -type f -exec chmod 644 {} +
             sudo chown -R www-data:www-data '${DEPLOY_PATH}'
+            sudo ln -sfn '/var/www/qbsystemsv${VERSION_ID}' '/var/www/qbsystems'
             sudo apache2ctl -t
             sudo systemctl reload apache2
           "
