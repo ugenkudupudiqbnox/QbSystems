@@ -1,0 +1,118 @@
+name: CD Deploy to qbnox
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to deploy (example: v1.0.0)"
+        required: true
+        type: string
+
+concurrency:
+  group: cd-deploy-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout code (tag push)
+        if: github.event_name == 'push'
+        uses: actions/checkout@v4
+
+      - name: Checkout code (manual tag)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag }}
+
+      - name: Resolve tag and deployment path
+        run: |
+          set -euo pipefail
+
+          if [ "${GITHUB_EVENT_NAME}" = "push" ]; then
+            TAG_NAME="${GITHUB_REF_NAME}"
+          else
+            TAG_NAME="${{ github.event.inputs.tag }}"
+          fi
+
+          if [[ ! "$TAG_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid tag format: $TAG_NAME"
+            echo "Expected format: vMAJOR.MINOR.PATCH (example: v1.0.0)"
+            exit 1
+          fi
+
+          VERSION_ID="${TAG_NAME#v}"
+          VERSION_ID="${VERSION_ID//./}"
+          DEPLOY_PATH="/var/www/qbsystemsv${VERSION_ID}/public_html"
+
+          echo "TAG_NAME=$TAG_NAME" >> "$GITHUB_ENV"
+          echo "DEPLOY_PATH=$DEPLOY_PATH" >> "$GITHUB_ENV"
+
+          echo "Deploying tag: $TAG_NAME"
+          echo "Resolved path: $DEPLOY_PATH"
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known_hosts
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+        run: |
+          set -euo pipefail
+          PORT="${SSH_PORT:-22}"
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "$PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          DEPLOY_PATH: ${{ env.DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+          PORT="${SSH_PORT:-22}"
+
+          echo "Deploying ./public_html -> ${SSH_USER}@${SSH_HOST}:${DEPLOY_PATH}"
+
+          ssh -p "$PORT" "${SSH_USER}@${SSH_HOST}" "
+            set -e
+            sudo mkdir -p '${DEPLOY_PATH}'
+          "
+
+          rsync -az --delete \
+            -e "ssh -p ${PORT}" \
+            --rsync-path="sudo rsync" \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude ".DS_Store" \
+            ./public_html/ "${SSH_USER}@${SSH_HOST}:${DEPLOY_PATH}/"
+
+      - name: Post-deploy checks and Apache reload
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          DEPLOY_PATH: ${{ env.DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+          PORT="${SSH_PORT:-22}"
+
+          ssh -p "$PORT" "${SSH_USER}@${SSH_HOST}" "
+            set -e
+            test -d '${DEPLOY_PATH}'
+            sudo find '${DEPLOY_PATH}' -type d -exec chmod 755 {} \\\;
+            sudo find '${DEPLOY_PATH}' -type f -exec chmod 644 {} \\\;
+            sudo chown -R www-data:www-data '${DEPLOY_PATH}'
+            sudo apache2ctl -t
+            sudo systemctl reload apache2
+          "
