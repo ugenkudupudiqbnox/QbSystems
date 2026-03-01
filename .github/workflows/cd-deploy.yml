@@ -110,8 +110,8 @@ jobs:
           ssh -p "$PORT" "${SSH_USER}@${SSH_HOST}" "
             set -e
             test -d '${DEPLOY_PATH}'
-            sudo find '${DEPLOY_PATH}' -type d -exec chmod 755 {} \\\;
-            sudo find '${DEPLOY_PATH}' -type f -exec chmod 644 {} \\\;
+            sudo find '${DEPLOY_PATH}' -type d -exec chmod 755 {} +
+            sudo find '${DEPLOY_PATH}' -type f -exec chmod 644 {} +
             sudo chown -R www-data:www-data '${DEPLOY_PATH}'
             sudo apache2ctl -t
             sudo systemctl reload apache2
