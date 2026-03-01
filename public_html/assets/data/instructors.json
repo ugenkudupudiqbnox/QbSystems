@@ -13,6 +13,7 @@
         "Installation & Configuration"
       ],
       "certificate": "assets/certificates/3336765511PS.pdf",
+      "verifyUrl": "https://moodle.academy/admin/tool/certificate/index.php?code=3336765511PS",
       "email": "connect@qbnox.com",
       "twitter": "#",
       "linkedin": "#",
@@ -31,6 +32,7 @@
         "Engagement"
       ],
       "certificate": "assets/certificates/priya-sharma-certificate.pdf",
+      "verifyUrl": "https://moodle.academy/admin/tool/certificate/index.php?code=priya-sharma-certificate",
       "email": "connect@qbnox.com",
       "twitter": "#",
       "linkedin": "#",
@@ -49,6 +51,7 @@
         "Troubleshooting"
       ],
       "certificate": "assets/certificates/amit-patel-certificate.pdf",
+      "verifyUrl": "https://moodle.academy/admin/tool/certificate/index.php?code=amit-patel-certificate",
       "email": "connect@qbnox.com",
       "twitter": "#",
       "linkedin": "#",
@@ -67,6 +70,7 @@
         "UX/UI"
       ],
       "certificate": "assets/certificates/sneha-desai-certificate.pdf",
+      "verifyUrl": "https://moodle.academy/admin/tool/certificate/index.php?code=sneha-desai-certificate",
       "email": "connect@qbnox.com",
       "twitter": "#",
       "linkedin": "#",

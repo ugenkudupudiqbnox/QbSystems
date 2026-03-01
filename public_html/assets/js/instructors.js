@@ -25,7 +25,8 @@
             return response.json();
         })
         .then(data => {
-            renderInstructors(data.instructors, basePath);
+            const instructors = Array.isArray(data?.instructors) ? data.instructors : [];
+            renderInstructors(instructors, basePath);
         })
         .catch(error => {
             console.error('Error loading instructors:', error);
@@ -44,14 +45,17 @@
         let html = '';
 
         instructors.forEach(instructor => {
-            const expertise = instructor.expertise.join(' • ');
-            const imagePath = basePath + instructor.image;
-            const certificatePath = basePath + instructor.certificate;
+            const expertiseList = Array.isArray(instructor?.expertise) ? instructor.expertise : [];
+            const expertise = expertiseList.join(' • ');
+            const imagePath = basePath + (instructor?.image || '');
+            const certificatePath = basePath + (instructor?.certificate || '');
             
             // Encode URL parameters for contact form
-            const contactSubject = encodeURIComponent(`Inquiry about hiring ${instructor.name} - ${instructor.title}`);
-            const contactMessage = encodeURIComponent(`Hello,\n\nI am interested in hiring ${instructor.name} (${instructor.title}) for my organization.\n\nExpertise areas: ${instructor.expertise.join(', ')}\n\nPlease provide more information about:\n- Availability\n- Hourly/daily rates\n- Duration of engagement\n\nThank you.`);
+            const contactSubject = encodeURIComponent(`Inquiry about hiring ${instructor?.name || 'this instructor'} - ${instructor?.title || ''}`);
+            const contactMessage = encodeURIComponent(`Hello,\n\nI am interested in hiring ${instructor?.name || 'this instructor'} (${instructor?.title || 'Instructor'}) for my organization.\n\nExpertise areas: ${expertiseList.join(', ')}\n\nPlease provide more information about:\n- Availability\n- Hourly/daily rates\n- Duration of engagement\n\nThank you.`);
             const contactUrl = `${basePath}index.html?subject=${contactSubject}&message=${contactMessage}#contact`;
+            const encodedCertificatePath = encodeURIComponent(certificatePath);
+            const encodedInstructorName = encodeURIComponent(instructor?.name || 'Certificate');
 
             html += `
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="${instructor.delay}">
@@ -64,17 +68,23 @@
                     <a href="mailto:${instructor.email}"><i class="bi bi-envelope"></i></a>
                   </div>
                 </div>
-                <div class="member-info">
+                <div class="member-info text-center">
                   <h4>${instructor.name}</h4>
                   <span>${instructor.title}</span>
                   <p>${instructor.description}</p>
-                  <div class="mt-3">
-                    <p class="mb-2"><strong>Expertise:</strong></p>
+                  <div class="mt-3 text-center">
+                    <p class="mb-2"><strong>Expertise</strong></p>
                     <p class="small">${expertise}</p>
                   </div>
-                  <div class="mt-3 download-catalog">
-                    <a href="#" onclick="openPdfModal('${certificatePath}', '${instructor.name}'); return false;"><span>View Certificate</span></a>
-                    <a href="${contactUrl}"><span>Hire This Instructor</span></a>
+                  <div class="mt-3 download-catalog text-center">
+                    <div style="display: flex; justify-content: center; align-items: center; padding: 10px 0; border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);">
+                      <strong style="margin-right: 8px; color: color-mix(in srgb, var(--default-color), transparent 30%);">Certificate:</strong>
+                      <a href="#" class="js-open-pdf" data-pdf="${encodedCertificatePath}" data-name="${encodedInstructorName}" style="margin-right: 8px;"><span>View</span></a>
+                      <span style="margin: 0 4px; color: color-mix(in srgb, var(--default-color), transparent 70%);">|</span>
+                      <a href="${instructor?.verifyUrl || '#'}" target="_blank" rel="noopener noreferrer"><span>Verify</span></a>
+                      <span style="margin: 0 4px; color: color-mix(in srgb, var(--default-color), transparent 70%);">|</span>    
+                      <a href="${contactUrl}"><span>Hire</span></a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -83,6 +93,15 @@
         });
 
         instructorsContainer.innerHTML = html;
+
+        instructorsContainer.querySelectorAll('.js-open-pdf').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const pdfPath = decodeURIComponent(this.getAttribute('data-pdf') || '');
+                const instructorName = decodeURIComponent(this.getAttribute('data-name') || 'Certificate');
+                window.openPdfModal(pdfPath, instructorName);
+            });
+        });
 
         // Reinitialize AOS for newly added elements
         if (typeof AOS !== 'undefined') {
@@ -114,10 +133,19 @@
 
     // Global function to open PDF modal
     window.openPdfModal = function(pdfPath, instructorName) {
+        if (!pdfPath) return;
         createPdfModal();
-        const modal = new bootstrap.Modal(document.getElementById('pdfModal'));
-        document.getElementById('pdfModalLabel').textContent = instructorName + ' - Certificate';
-        document.getElementById('pdfViewer').src = pdfPath;
+        const modalEl = document.getElementById('pdfModal');
+        const titleEl = document.getElementById('pdfModalLabel');
+        const viewerEl = document.getElementById('pdfViewer');
+        if (!modalEl || !titleEl || !viewerEl) return;
+        if (typeof bootstrap === 'undefined' || !bootstrap.Modal) {
+            window.open(pdfPath, '_blank', 'noopener,noreferrer');
+            return;
+        }
+        const modal = new bootstrap.Modal(modalEl);
+        titleEl.textContent = (instructorName || 'Certificate') + ' - Certificate';
+        viewerEl.src = pdfPath;
         modal.show();
     };
 })();
