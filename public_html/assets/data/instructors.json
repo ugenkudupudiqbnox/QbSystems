@@ -1,0 +1,76 @@
+{
+  "instructors": [
+    {
+      "id": 1,
+      "name": "Pavan Shankar",
+      "title": "Jr Moodle Administrator",
+      "image": "assets/img/team/team-1.jpg",
+      "description": "12 months of experience as a Junior Moodle Administrator and Course Designer. Supports Moodle site administration, course setup, content structuring, and basic faculty assistance for effective online learning delivery.",
+      "expertise": [
+        "Course Design",
+        "Faculty Training",
+        "LMS Administration",
+        "Installation & Configuration"
+      ],
+      "certificate": "assets/certificates/3336765511PS.pdf",
+      "email": "connect@qbnox.com",
+      "twitter": "#",
+      "linkedin": "#",
+      "delay": 100
+    },
+    {
+      "id": 2,
+      "name": "Priya Sharma",
+      "title": "Moodle Instructional Designer",
+      "image": "assets/img/team/team-2.jpg",
+      "description": "12+ years in curriculum development and instructional design. Expert in creating engaging interactive content and assessment strategies for Moodle platforms. Certified Moodle Instructor.",
+      "expertise": [
+        "Instructional Design",
+        "Content Creation",
+        "Assessment Strategy",
+        "Engagement"
+      ],
+      "certificate": "assets/certificates/priya-sharma-certificate.pdf",
+      "email": "connect@qbnox.com",
+      "twitter": "#",
+      "linkedin": "#",
+      "delay": 200
+    },
+    {
+      "id": 3,
+      "name": "Amit Patel",
+      "title": "Moodle Technical Trainer",
+      "image": "assets/img/team/team-3.jpg",
+      "description": "10+ years of hands-on experience with Moodle administration and customization. Specializes in technical training, plugin integration, and system troubleshooting. Certified Moodle Instructor.",
+      "expertise": [
+        "Technical Training",
+        "Plugin Integration",
+        "System Admin",
+        "Troubleshooting"
+      ],
+      "certificate": "assets/certificates/amit-patel-certificate.pdf",
+      "email": "connect@qbnox.com",
+      "twitter": "#",
+      "linkedin": "#",
+      "delay": 300
+    },
+    {
+      "id": 4,
+      "name": "Sneha Desai",
+      "title": "Learning Experience Designer",
+      "image": "assets/img/team/team-4.jpg",
+      "description": "8+ years creating transformative learning experiences using Moodle. Expert in adaptive learning, gamification, and student engagement strategies. Certified Moodle Instructor.",
+      "expertise": [
+        "Learning Experience Design",
+        "Gamification",
+        "Engagement Strategies",
+        "UX/UI"
+      ],
+      "certificate": "assets/certificates/sneha-desai-certificate.pdf",
+      "email": "connect@qbnox.com",
+      "twitter": "#",
+      "linkedin": "#",
+      "delay": 400
+    }
+  ]
+}

@@ -51,10 +51,11 @@
           </li>
           <li class="dropdown"><a href="#"><span>Plugin Development</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           <ul>
-            <li><a href="${basePath}services/service-details.html">Pressbooks LTI 1.3</a></li>
+            <li><a href="${basePath}services/service-details.html">Qbnox LTI 1.3</a></li>
             <li><a href="${basePath}services/service-details.html">Pressbooks SMTP</a></li>
           </ul>
           </li>
+          <li><a href="${basePath}services/moodle-instructors.html">Moodle Instructors</a></li>
         </ul>
         </li>
         <li><a href="${basePath}index.html#team">Team</a></li>
